@@ -25,20 +25,16 @@ console.log(`Found ${dataset.length} items in dataset.`);
 
 let count = 0;
 for (const item of dataset) {
-    const filename = item._original_filename;
-    if (!filename) {
-        console.error("Item missing _original_filename, skipping...", item);
+    // Use question_id to generate filename
+    const questionId = item.question_id;
+    if (!questionId) {
+        console.error("Item missing question_id, skipping...", item);
         continue;
     }
 
-    // Skip test.json
-    if (filename === 'test.json') {
-        console.log("Skipping test.json");
-        continue;
-    }
+    const filename = `${questionId}.json`;
 
-    // Remove the metadata field we added
-    const { _original_filename, ...questionData } = item;
+    const questionData = { ...item };
 
     // Remove has_answer from haystack sessions
     if (questionData.haystack_sessions && Array.isArray(questionData.haystack_sessions)) {
