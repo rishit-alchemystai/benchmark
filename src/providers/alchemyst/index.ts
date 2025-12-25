@@ -103,13 +103,13 @@ export class AlchemystProvider implements Provider {
         })
 
         // console.log("Response", response)
-        console.log("Querry for search: ", query);
+        console.log("Querry for searching: ", query);
         console.log("Response Status", response.contexts);
 
         
 
         // Normalize Alchemyst results if necessary. 
-        // Based on SDK docs, it returns an array of context items.
+        // Based on SDK docs, it returns an array of context items.s
         return response.contexts ?? [];
     }
 
