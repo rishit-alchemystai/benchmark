@@ -51,6 +51,7 @@ export async function runIngestPhase(
             startedAt: new Date().toISOString(),
         })
 
+        console.log("Reached here")
         try {
             const completedSessions = checkpoint.questions[question.questionId].phases.ingest.completedSessions
 
@@ -63,6 +64,7 @@ export async function runIngestPhase(
                 }
 
                 const result = await provider.ingest([session], { containerTag })
+                console.log("Result of ingestion:", result)
 
                 // Accumulate document IDs and task IDs
                 combinedResult.documentIds.push(...result.documentIds)
